@@ -38,7 +38,7 @@
                     <li *ngFor="let user of macth.blue" class="list-group-item">
                         <div class="w-25 float-left">
                             <img src="http://ddragon.leagueoflegends.com/cdn/10.22.1/img/champion/{{user['champion']['image']['full']}}"  width="32" height="32" class="mr-1">
-                            <b>{{user['summonerName']}}</b>
+                            <a routerLink="/summoner/{{user['summonerName']}}" class="text-decoration-none text-dark"><b>{{user['summonerName']}}</b></a>
                         </div>
                         <div class="w-50 float-left">
                             <img src="../../../assets/rank/{{user['rank'][0]['tier']}}.png" width="32" >
@@ -62,7 +62,7 @@
                     <li *ngFor="let user of macth.red" class="list-group-item clearfix">
                         <div class="w-25 float-left">
                             <img src="http://ddragon.leagueoflegends.com/cdn/10.22.1/img/champion/{{user['champion']['image']['full']}}"  width="32" height="32" class="mr-1">
-                            <b>{{user['summonerName']}}</b>
+                            <a routerLink="/summoner/{{user['summonerName']}}" class="text-decoration-none text-dark"><b>{{user['summonerName']}}</b></a>
                         </div>
                         <div class="w-50 float-left">
                             <img src="../../../assets/rank/{{user['rank'][0]['tier']}}.png" width="32" >
