@@ -1,0 +1,12 @@
+<div class="bg-dark p-2 rounded-top clearfix">
+    
+</div>
+
+<div class="p-2 bg-white clearfix">
+
+    <a class="nav-link float-left p-0 m-1 cham" *ngFor="let cham of Chams"  routerLink="/champions/{{cham}}">
+        <img src="http://ddragon.leagueoflegends.com/cdn/10.22.1/img/champion/{{cham}}.png"  width="82" height="82"><br>
+        {{cham}}
+    </a>
+    
+</div>

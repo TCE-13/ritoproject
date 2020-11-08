@@ -1,0 +1,84 @@
+<div class="alert alert-danger text-center" *ngIf="summonerError">
+    Summoner Bulunamadı.
+</div>
+<div class="row my-2" *ngIf="!summonerError">
+    <div class="col-md-3  bg-white p-2 rounded-left  h-25">
+        <img src="http://ddragon.leagueoflegends.com/cdn/10.22.1/img/profileicon/{{summoner['profileIconId']}}.png" class="rounded-circle mx-auto d-block" width="150" height="150">
+        <h1 class="text-center">{{summoner['name']}}</h1>
+        <div class="m-2 pt-2 border-top clearfix">
+            <div class="float-left">
+                <img src="../../../assets/rank/{{rank[1]['tier']}}.png" width="128" >
+            </div>
+            <div class="text-black-50 float-left mt-5 ml-2">
+                <span style="font-size: 12px;" class="d-block">Tekli Sıra</span>
+                <h6>{{rank[1]['tier']+ " " + rank[1]['rank']}}</h6>
+            </div>
+        </div>
+        <div class="m-2 pt-2 border-top clearfix">
+            <div class="float-left">
+                <img src="../../../assets/rank/{{rank[0]['tier']}}.png" width="128" >
+            </div>
+            <div class="text-black-50 float-left mt-5 ml-2">
+                <span style="font-size: 12px;" class="d-block">Flex 5:5 Rank</span>
+                <h6>{{rank[0]['tier']+ " " + rank[0]['rank']}}</h6>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-9 p-2 bg-white border-left rounded-right rounded-bottom">
+        <div *ngIf="!matchError">
+            <div class="teamblue">
+                <div class="bg-light p-1 text-primary rounded-top clearfix" style="border-left: 5px#007bff solid;">
+                    <h4 class="float-left">Mavi Takım</h4>
+                    <div class="border border-primary float-right mr-1" style="width: 33px; height: 33px;" *ngFor="let banUser of macth.blueBan">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/10.22.1/img/champion/{{banUser['champion']['image']['full']}}"  width="31" height="31">
+                    </div>
+                </div>
+                <ul  class="list-group list-group-flush" style="border-left: 5px#007bff solid;">
+                    <li *ngFor="let user of macth.blue" class="list-group-item">
+                        <div class="w-25 float-left">
+                            <img src="http://ddragon.leagueoflegends.com/cdn/10.22.1/img/champion/{{user['champion']['image']['full']}}"  width="32" height="32" class="mr-1">
+                            <b>{{user['summonerName']}}</b>
+                        </div>
+                        <div class="w-50 float-left">
+                            <img src="../../../assets/rank/{{user['rank'][0]['tier']}}.png" width="32" >
+                            {{user['rank'][0]['tier'] +' '+ user['rank'][0]['rank']+' ('+user['rank'][0]['leaguePoints']+' LP)'}} <span class="text-success">{{user['rank'][0]['wins']}} W</span><b>/</b><span class="text-danger">{{user['rank'][0]['losses']}} L</span>
+                        </div>
+                        <div class="w-25 float-left">
+                            {{user['master']['championLevel']+'.Seviye | ' + user['master']['championPoints'] +' Puan'}}
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="teamred mt-2">
+                <div class="bg-light p-1 text-danger rounded-top  clearfix" style="border-left: 5px#dc3545 solid;">
+                    <h4 class="float-left">Kırmızı Takım</h4>
+                    <div class="border border-danger float-right mr-1" style="width: 33px; height: 33px;" *ngFor="let banUser of macth.redBan">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/10.22.1/img/champion/{{banUser['champion']['image']['full']}}"  width="31" height="31">
+                    </div>
+                </div>
+                <ul  class="list-group list-group-flush" style="border-left: 5px#dc3545 solid;">
+                    <li *ngFor="let user of macth.red" class="list-group-item clearfix">
+                        <div class="w-25 float-left">
+                            <img src="http://ddragon.leagueoflegends.com/cdn/10.22.1/img/champion/{{user['champion']['image']['full']}}"  width="32" height="32" class="mr-1">
+                            <b>{{user['summonerName']}}</b>
+                        </div>
+                        <div class="w-50 float-left">
+                            <img src="../../../assets/rank/{{user['rank'][0]['tier']}}.png" width="32" >
+                            {{user['rank'][0]['tier'] +' '+ user['rank'][0]['rank']+' ('+user['rank'][0]['leaguePoints']+' LP)'}} <span class="text-success">{{user['rank'][0]['wins']}} W</span><b>/</b><span class="text-danger">{{user['rank'][0]['losses']}} L</span>
+                        </div>
+                        <div class="w-25 float-left">
+                            {{user['master']['championLevel']+'.Seviye | ' + user['master']['championPoints'] +' Puan'}}
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="alert alert-danger text-center" *ngIf="matchError">
+            '{{summoner['name']}}' aktif bir oyunda değil.
+        </div>
+
+    </div>
+</div>

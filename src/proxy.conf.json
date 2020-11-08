@@ -1,0 +1,23 @@
+{
+    "/api/*":
+    {
+        "target":"https://tr1.api.riotgames.com/lol",
+        "secure":false,
+        "logLevel":"debug",
+        "changeOrigin":true,
+        "pathRewrite":{
+            "^/api":""
+        }
+    },
+    "/json/*":
+    {
+        "target":"http://ddragon.leagueoflegends.com/cdn",
+        "secure":false,
+        "logLevel":"debug",
+        "changeOrigin":true,
+        "pathRewrite":{
+            "^/json":""
+        }
+    }
+
+}
