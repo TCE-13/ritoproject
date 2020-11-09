@@ -4,4 +4,4 @@
 
 You'll need a developer key from https://developer.riotgames.com.
 
-(./src/assets/developer-riotgames-api-key.png)
+![Api Key](./src/assets/developer-riotgames-api-key.png)
