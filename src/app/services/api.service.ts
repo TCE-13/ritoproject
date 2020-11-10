@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class ApiService {
 
-  private apiKey = "RGAPI-468d3b15-cf03-4c74-856c-fc2978cb8bf6";
+  private apiKey = "RGAPI-2b327bf5-f632-47ff-a0a2-4c2515d1613c";
   
 
   constructor(private http:HttpClient){ }
