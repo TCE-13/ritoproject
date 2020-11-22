@@ -3,7 +3,7 @@
 </div>
 <div class="row my-2" *ngIf="!summonerError">
     <div class="col-md-3  bg-white p-2 rounded-left  h-25">
-        <img src="http://ddragon.leagueoflegends.com/cdn/10.22.1/img/profileicon/{{summoner['profileIconId']}}.png" class="rounded-circle mx-auto d-block" width="150" height="150">
+        <img src="http://ddragon.leagueoflegends.com/cdn/10.23.1/img/profileicon/{{summoner['profileIconId']}}.png" class="rounded-circle mx-auto d-block" width="150" height="150">
         <h1 class="text-center">{{summoner['name']}}</h1>
         <div class="m-2 pt-2 border-top clearfix">
             <div class="float-left">
@@ -31,6 +31,7 @@
                 <div class="bg-light p-1 text-primary rounded-top clearfix" style="border-left: 5px#007bff solid;">
                     <h4 class="float-left">Mavi Takım</h4>
                     <div class="border border-primary float-right mr-1" style="width: 33px; height: 33px;" *ngFor="let banUser of macth.blueBan">
+                        
                         <img src="http://ddragon.leagueoflegends.com/cdn/10.22.1/img/champion/{{banUser['champion']['image']['full']}}"  width="31" height="31">
                     </div>
                 </div>
@@ -55,7 +56,7 @@
                 <div class="bg-light p-1 text-danger rounded-top  clearfix" style="border-left: 5px#dc3545 solid;">
                     <h4 class="float-left">Kırmızı Takım</h4>
                     <div class="border border-danger float-right mr-1" style="width: 33px; height: 33px;" *ngFor="let banUser of macth.redBan">
-                        <img src="http://ddragon.leagueoflegends.com/cdn/10.22.1/img/champion/{{banUser['champion']['image']['full']}}"  width="31" height="31">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/10.22.1/img/champion/{{banUser['champion']['image']['full'] }}"  width="31" height="31">
                     </div>
                 </div>
                 <ul  class="list-group list-group-flush" style="border-left: 5px#dc3545 solid;">

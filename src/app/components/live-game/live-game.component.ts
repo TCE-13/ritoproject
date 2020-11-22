@@ -171,11 +171,18 @@ export class LiveGameComponent implements OnInit {
       res['bannedChampions'].forEach(element => {
         if(element['teamId'] == 100)
         {
-          this.macth.blueBan.push({'pick':element['pickTurn'],'champion':this.getChams(element['championId'])});
+          if(element['championId'] != -1)
+          {
+            this.macth.blueBan.push({'pick':element['pickTurn'],'champion':this.getChams(element['championId'])});
+          }
+          
         }
         else
         {
-          this.macth.redBan.push({'pick':element['pickTurn'],'champion':this.getChams(element['championId'])});
+          if(element['championId'] != -1)
+          {
+            this.macth.redBan.push({'pick':element['pickTurn'],'champion':this.getChams(element['championId'])});
+          }
         }
       });
       console.log(this.macth);
