@@ -19,6 +19,8 @@ export class LiveGameComponent implements OnInit {
   {
     'blue':[],
     'red':[],
+    'blueMaster':[{'championLevel':'1','championPoints':'0'}],
+    'redMaster':[{'championLevel':'1','championPoints':'0'}],
     'blueBan':[],
     'redBan':[]
   };
@@ -30,7 +32,7 @@ export class LiveGameComponent implements OnInit {
 
   constructor(private apiService:ApiService,
               private route : ActivatedRoute
-             ) { }
+            ) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params =>{
@@ -88,9 +90,7 @@ export class LiveGameComponent implements OnInit {
       else
       {
         this.rank = [{'tier':'UNRANKED','rank':''},{'tier':'UNRANKED','rank':''}];
-      }
-      console.log(res);
-      
+      }      
     });
   }
   
@@ -114,59 +114,84 @@ export class LiveGameComponent implements OnInit {
       this.macth = {
         'blue':[],
         'red':[],
+        'blueMaster':[],
+        'redMaster':[],
         'blueBan':[],
         'redBan':[]
       };
-
+      var bluei = 0,
+          redi = 0;
+      
       res['participants'].forEach(element =>{
         if(element['teamId'] == 100)
         { 
 
           this.apiService.getRank(element['summonerId']).subscribe(res =>{
-            this.apiService.getChamMaster(element['championId'],element['summonerId']).subscribe(master =>{
+              
               if(res != "")
               {
                 if(res[1] && res[0] != null)
                 {
-                  this.macth.blue.push({'summonerName':element['summonerName'],'summonerId':element['summonerId'],'champion':this.getChams(element['championId']),'rank':{0:res[1],1:res[0]},'master':master});
+                  this.macth.blue.push({'id':bluei,'summonerName':element['summonerName'],'summonerId':element['summonerId'],'champion':this.getChams(element['championId']),'rank':{0:res[1],1:res[0]},'master':''});
                 }
                 else if(res[1] == null )
                 {
-                  this.macth.blue.push({'summonerName':element['summonerName'],'summonerId':element['summonerId'],'champion':this.getChams(element['championId']),'rank':{0:res[0],1:{'tier':'UNRANKED','rank':'','leaguePoints':'0','wins':'0','losses':'0'}},'master':master});
+                  this.macth.blue.push({'id':bluei,'summonerName':element['summonerName'],'summonerId':element['summonerId'],'champion':this.getChams(element['championId']),'rank':{0:res[0],1:{'tier':'UNRANKED','rank':'','leaguePoints':'0','wins':'0','losses':'0'}},'master':''});
                 }
               }
               else
               {
-                this.macth.blue.push({'summonerName':element['summonerName'],'summonerId':element['summonerId'],'champion':this.getChams(element['championId']),'rank':{0:{'tier':'UNRANKED','rank':'','leaguePoints':'0','wins':'0','losses':'0'},1:{'tier':'UNRANKED','rank':'','leaguePoints':'0','wins':'0','losses':'0'}},'master':master});
+                this.macth.blue.push({'id':bluei,'summonerName':element['summonerName'],'summonerId':element['summonerId'],'champion':this.getChams(element['championId']),'rank':{0:{'tier':'UNRANKED','rank':'','leaguePoints':'0','wins':'0','losses':'0'},1:{'tier':'UNRANKED','rank':'','leaguePoints':'0','wins':'0','losses':'0'}},'master':''});
               }
-            });
-          });            
+              bluei++;
+          });
+          
+          this.apiService.getChamMaster(element['championId'],element['summonerId']).subscribe(master => 
+            {
+              this.macth.blueMaster.push(master);
+            },
+            err => {
+              this.macth.blueMaster.push({'championLevel':'1','championPoints':'0'});
+            }
+          );
           
         }
         else
         {
-
+          
           this.apiService.getRank(element['summonerId']).subscribe(res =>{
-            this.apiService.getChamMaster(element['championId'],element['summonerId']).subscribe(master =>{
+                          
               if(res != "")
               {
                 if(res[1] && res[0] != null)
                 {
-                  this.macth.red.push({'summonerName':element['summonerName'],'summonerId':element['summonerId'],'champion':this.getChams(element['championId']),'rank':{0:res[1],1:res[0]},'master':master});
+                  this.macth.red.push({'id':redi,'summonerName':element['summonerName'],'summonerId':element['summonerId'],'champion':this.getChams(element['championId']),'rank':{0:res[1],1:res[0]},'master':''});
                 }
                 else if(res[1] == null )
                 {
-                  this.macth.red.push({'summonerName':element['summonerName'],'summonerId':element['summonerId'],'champion':this.getChams(element['championId']),'rank':{0:res[0],1:{'tier':'UNRANKED','rank':'','leaguePoints':'0','wins':'0','losses':'0'}},'master':master});
+                  this.macth.red.push({'id':redi,'summonerName':element['summonerName'],'summonerId':element['summonerId'],'champion':this.getChams(element['championId']),'rank':{0:res[0],1:{'tier':'UNRANKED','rank':'','leaguePoints':'0','wins':'0','losses':'0'}},'master':''});
                 }
               }
               else
               {
-                this.macth.red.push({'summonerName':element['summonerName'],'summonerId':element['summonerId'],'champion':this.getChams(element['championId']),'rank':{0:{'tier':'UNRANKED','rank':'','leaguePoints':'0','wins':'0','losses':'0'},1:{'tier':'UNRANKED','rank':'','leaguePoints':'0','wins':'0','losses':'0'}},'master':master});
+                this.macth.red.push({'id':redi,'summonerName':element['summonerName'],'summonerId':element['summonerId'],'champion':this.getChams(element['championId']),'rank':{0:{'tier':'UNRANKED','rank':'','leaguePoints':'0','wins':'0','losses':'0'},1:{'tier':'UNRANKED','rank':'','leaguePoints':'0','wins':'0','losses':'0'}},'master':''});
               }
-            });
-          }); 
-
+              redi++;
+          });
+          
         }
+
+        this.apiService.getChamMaster(element['championId'],element['summonerId']).subscribe(master => 
+          {
+            this.macth.redMaster.push(master);
+          },
+          err => {
+            this.macth.redMaster.push({'championLevel':'1','championPoints':'0'});
+          }
+        );
+
+
+
       });
       res['bannedChampions'].forEach(element => {
         if(element['teamId'] == 100)

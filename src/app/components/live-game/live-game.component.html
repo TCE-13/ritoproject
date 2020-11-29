@@ -46,7 +46,7 @@
                             {{user['rank'][0]['tier'] +' '+ user['rank'][0]['rank']+' ('+user['rank'][0]['leaguePoints']+' LP)'}} <span class="text-success">{{user['rank'][0]['wins']}} W</span><b>/</b><span class="text-danger">{{user['rank'][0]['losses']}} L</span>
                         </div>
                         <div class="w-25 float-left">
-                            {{user['master']['championLevel']+'.Seviye | ' + user['master']['championPoints'] +' Puan'}}
+                            {{macth.blueMaster[user['id']]['championLevel']+'.Seviye | ' + macth.blueMaster[user['id']]['championPoints'] +' Puan'}}
                         </div>
                     </li>
                 </ul>
@@ -70,7 +70,7 @@
                             {{user['rank'][0]['tier'] +' '+ user['rank'][0]['rank']+' ('+user['rank'][0]['leaguePoints']+' LP)'}} <span class="text-success">{{user['rank'][0]['wins']}} W</span><b>/</b><span class="text-danger">{{user['rank'][0]['losses']}} L</span>
                         </div>
                         <div class="w-25 float-left">
-                            {{user['master']['championLevel']+'.Seviye | ' + user['master']['championPoints'] +' Puan'}}
+                            {{macth.redMaster[user['id']]['championLevel']+'.Seviye | ' + macth.redMaster[user['id']]['championPoints'] +' Puan'}}
                         </div>
                     </li>
                 </ul>
